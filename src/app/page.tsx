@@ -1,91 +1,138 @@
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from './page.module.css'
+"use client";
 
-const inter = Inter({ subsets: ['latin'] })
+import "../styles/tailwind.css";
+import "./globals.css";
+import IconBounce from "./components/IconBounce";
+import { useEffect, useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import ProjectCard from "./components/ProjectCard";
+import AboutSection from "./components/AboutSection";
+import Lenis from "@studio-freight/lenis";
 
 export default function Home() {
+  const ref = useRef<any>(null);
+  useEffect(() => {
+    gsap.from("#github", {
+      y: 0,
+    });
+    const t1 = gsap.timeline({
+      repeat: -1,
+      defaults: {
+        ease: "none",
+        duration: 1.5,
+      },
+    });
+    t1.to("#github", { y: -20 });
+    t1.to("#github", { y: 0 });
+
+    gsap.from("#gmail", {
+      y: 0,
+    });
+    const t2 = gsap.timeline({
+      repeat: -1,
+      defaults: {
+        ease: "none",
+        duration: 1.45,
+      },
+    });
+    t2.to("#gmail", { y: -20 });
+    t2.to("#gmail", { y: 0 });
+
+    gsap.from("#linkedIn", {
+      y: 0,
+    });
+    const t3 = gsap.timeline({
+      repeat: -1,
+      defaults: {
+        ease: "none",
+        duration: 1.4,
+      },
+    });
+    t3.to("#linkedIn", { y: -20 });
+    t3.to("#linkedIn", { y: 0 });
+  }, []);
+
+  useLayoutEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+      direction: "vertical", // vertical, horizontal
+      gestureDirection: "vertical", // vertical, horizontal, both
+      smooth: true,
+      // mouseMultiplier: 1,
+      // smoothTouch: false,
+      // touchMultiplier: 2,
+      // infinite: true,
+    });
+
+    function raf(time: any) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, []);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <>
+      <main className="font-neue-montreal">
+        <header className="container mx-auto text-xl  min-h-[80vh] items-center flex">
+          <div className="ml-52 leading-snug w-full">
+            <IconBounce id="github" imageUrl="/img/github.png" />
+            <IconBounce
+              id="gmail"
+              imageUrl="/img/gmail.png"
+              backdropColor="red"
+              style={{ top: "48px", left: "75%" }}
             />
-          </a>
-        </div>
-      </div>
+            <IconBounce
+              id="linkedIn"
+              imageUrl="/img/linkedin.png"
+              backdropColor="blue"
+              style={{ top: "40vh", left: "5%" }}
+            />
+            <h1> Mejjad El Mehdi</h1>
+            <h1 className="text-[112px]">
+              <span className="-ml-1">Full-Stack</span>
+              <span className="block ml-16">WEB developer</span>
+            </h1>
+          </div>
+        </header>
+        <section className="bg-slate-100 bg-opacity-30 py-[20vh] shadow-xl shadow-slate-50">
+          <div className="container mx-auto">
+            <div>
+              <div>
+                <h1 className="text-[68px] leading-snug my-8">
+                  Selected <br />
+                  <span className="ml-14">Project</span>
+                </h1>
+              </div>
+              <div className="grid grid-cols-12 items-end justify-items-center">
+                <ProjectCard
+                  imageUrl="/img/MyProject-2.gif"
+                  title="Sushi-Street"
+                  websiteLink="https://sushi-street.com"
+                  description="Restaurant"
+                />
+                <ProjectCard
+                  fullHeight
+                  imageUrl="/img/MyProject-1.png"
+                  title="An-nassiha"
+                  websiteLink="https://an-nassiha.com/"
+                  description="Religious Website"
+                />
+                <ProjectCard fullHeight imageUrl="/img/MyProject-1.png" />
+                <ProjectCard top imageUrl="/img/MyProject-2.gif" />
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+        <section className="py-64">
+          <AboutSection />
+        </section>
+        <section className="h-screen"></section>
+      </main>
+    </>
+  );
 }
