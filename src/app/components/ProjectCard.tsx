@@ -3,6 +3,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import { BsArrowUpRight } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 interface Props {
   fullHeight?: boolean;
@@ -98,8 +99,25 @@ export default function ProjectCard({
       }  w-3/4 mt-16`}
     >
       <div
+        onClick={() => {
+          toast(
+            `☹️ Sorry no use case available!
+            😊You Can Click on the title `,
+            {
+              position: "bottom-center",
+
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            }
+          );
+        }}
         className={`relative ${
-          fullHeight ? "h-[600px]" : "h-[300px]"
+          fullHeight ? "w-full aspect-[4/5]" : "w-full aspect-video"
         } overflow-hidden`}
         onMouseEnter={mouseEnterUseCase}
         onMouseLeave={mouseLeaveUseCase}

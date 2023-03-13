@@ -12,15 +12,15 @@ export default function Cursor({}: Props) {
   const updateCursorPosition = (e: globalThis.MouseEvent | any) => {
     gsap.to("#cursor", {
       duration: 1,
-      x: e.pageX * 2 - 40 + "%",
-      y: e.pageY * 2 - 40 + "%",
+      top: e.clientY - 20 + "px",
+      left: e.clientX - 20 + "px",
       ease: "power3.out",
     });
 
     gsap.to("#cursor-dot", {
       duration: 0,
-      top: `${e.pageY}px`,
-      left: `${e.pageX}px`,
+      top: `${e.clientY}px`,
+      left: `${e.clientX}px`,
     });
   };
 
@@ -29,6 +29,7 @@ export default function Cursor({}: Props) {
     window.addEventListener("mousemove", (event) => {
       updateCursorPosition(event);
     });
+
     return () => {
       window.removeEventListener("mousemove", (event) => {
         updateCursorPosition(event);
@@ -41,12 +42,12 @@ export default function Cursor({}: Props) {
     <>
       <div
         ref={cursorContainerRef}
-        className="z-[999] h-[50px] w-[50px] border-[2px] border-gray-500 rounded-full absolute pointer-events-none"
+        className="z-[999] h-[50px] w-[50px] border-[2px] border-gray-500 rounded-full fixed pointer-events-none"
         id="cursor"
       ></div>
       <div
         ref={cursorDotRef}
-        className="z-[999] h-[10px] w-[10px] bg-black rounded-full absolute pointer-events-none"
+        className="z-[999] h-[10px] w-[10px] bg-black rounded-full fixed pointer-events-none"
         id="cursor-dot"
       ></div>
     </>

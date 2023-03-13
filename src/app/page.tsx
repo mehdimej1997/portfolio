@@ -8,6 +8,8 @@ import gsap from "gsap";
 import ProjectCard from "./components/ProjectCard";
 import AboutSection from "./components/AboutSection";
 import Lenis from "@studio-freight/lenis";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
   const ref = useRef<any>(null);
@@ -109,20 +111,32 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-12 items-end justify-items-center">
                 <ProjectCard
-                  imageUrl="/img/MyProject-2.gif"
+                  imageUrl="/img/sushi.png"
                   title="Sushi-Street"
                   websiteLink="https://sushi-street.com"
                   description="Restaurant"
                 />
                 <ProjectCard
                   fullHeight
-                  imageUrl="/img/MyProject-1.png"
+                  imageUrl="/img/nassiha.png"
                   title="An-nassiha"
                   websiteLink="https://an-nassiha.com/"
                   description="Religious Website"
                 />
-                <ProjectCard fullHeight imageUrl="/img/MyProject-1.png" />
-                <ProjectCard top imageUrl="/img/MyProject-2.gif" />
+                <ProjectCard
+                  fullHeight
+                  imageUrl="/img/bookhunter.png"
+                  title="Book Hunter"
+                  websiteLink="https://apps.apple.com/us/app/bookhunter/id1659667251?ign-itscg=30200&ign-itsct=apps_box_badge"
+                  description="Display book vendor’s offers"
+                />
+                <ProjectCard
+                  top
+                  imageUrl="/img/cloudlink.png"
+                  title="Cloudlink"
+                  websiteLink="https://cloudlink.us"
+                  description="Agency Website"
+                />
               </div>
             </div>
           </div>
@@ -131,7 +145,19 @@ export default function Home() {
         <section className="py-64">
           <AboutSection />
         </section>
-        <section className="h-screen"></section>
+        <section
+          className="h-screen"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h2 style={{ fontWeight: 700, fontSize: "64px" }}>
+            In Progress ! 👨‍💻🫡
+          </h2>
+        </section>
+        <ToastContainer />
       </main>
     </>
   );

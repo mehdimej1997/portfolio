@@ -23,13 +23,13 @@ export default function AboutSection({}: Props) {
   return (
     <div className="about container mx-auto relative">
       <div className="image absolute h-44 aspect-video left-7 -top-32">
-        <Image src={"/img/MyProject-1.png"} alt="" fill />
+        <Image src={"/img/three.png"} alt="" fill />
       </div>
       <div className="image absolute h-60 w-44 left-52 -bottom-32">
-        <Image src={"/img/MyProject-1.png"} alt="" fill />
+        <Image src={"/img/three.png"} alt="" fill />
       </div>
       <div className="image absolute h-56 aspect-square right-20 top-16">
-        <Image src={"/img/MyProject-1.png"} alt="" fill />
+        <Image src={"/img/three.png"} alt="" fill />
       </div>
       <div className="text-center">
         <p className="text-3xl">
