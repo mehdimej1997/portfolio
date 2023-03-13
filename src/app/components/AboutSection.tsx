@@ -1,3 +1,5 @@
+"use client";
+
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -12,9 +14,11 @@ export default function AboutSection({}: Props) {
     });
     gsap.registerPlugin(ScrollTrigger);
     gsap.to(".image", {
+      stagger: 0.05,
+      duration: 0.5,
       scrollTrigger: {
         trigger: ".about",
-        scrub: 3,
+        scrub: 1.5,
       },
       y: "-=400px",
       ease: "power3.InOut",
@@ -25,7 +29,7 @@ export default function AboutSection({}: Props) {
       <div className="image absolute h-44 aspect-video left-7 -top-32">
         <Image src={"/img/three.png"} alt="" fill />
       </div>
-      <div className="image absolute h-60 w-44 left-52 -bottom-32">
+      <div className="image absolute h-60 w-44 left-52 -bottom-20">
         <Image src={"/img/three.png"} alt="" fill />
       </div>
       <div className="image absolute h-56 aspect-square right-20 top-16">
